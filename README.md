@@ -1,7 +1,8 @@
 # GenericRepository
-GenericRepository define las interfaces necesarias para implementar el patrón Generic Repository
+GenericRepository defines the interfaces necessary to implement the Generic Repository pattern.
 
-# El Patrón Generic Repository.
-•	Que hace: Abstrae el acceso a datos detrás de interfaces (IReadGenericRepository, IReadGenericRepository<T,TKey>, IWriteGenericRepository).
-•	Propósito: separar la lógica de acceso a datos de la lógica de negocio, facilitar pruebas y permitir intercambio de la tecnología de persistencia.
-•	Beneficios: independencia de la DAL, facilidad para inyección de dependencias y pruebas unitarias.
+# The Generic Repository Pattern:
+
+• What it does: Abstracts data access behind interfaces (IReadGenericRepository, IReadGenericRepository<T,TKey>, IWriteGenericRepository).
+• Purpose: Separates data access logic from business logic, facilitates testing, and enables the exchange of persistence technologies.
+• Benefits: DAL independence, ease of dependency injection, and unit testing.
