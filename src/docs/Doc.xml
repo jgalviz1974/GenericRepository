@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gasolutions.Core.GenericRepository</name>
+    </assembly>
+    <members>
+        <member name="T:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository">
+            <summary>
+                Defines a contract for a generic read repository.
+            </summary>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository.QueryAndReturnJson(System.String,System.Data.CommandType)">
+            <summary>
+                Queries the data source and returns the result as JSON.
+            </summary>
+            <param name="commandText">
+                The command text to execute against the data source.
+            </param>
+            <param name="commandType">
+                The type of the command (e.g., Text, StoredProcedure).
+            </param>
+            <returns>
+                A JSON string containing the query results.
+            </returns>
+            <exception cref="T:System.Exception">
+                Thrown when there is an error executing the query.
+            </exception>
+        </member>
+        <member name="T:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository`2">
+            <summary>
+            Defines the contract for a read-only repository that provides data access
+            for entities of type <typeparamref name="T"/> with a primary key of type <typeparamref name="TKey"/>.
+            </summary>
+            <typeparam name="T">The type of the entity.</typeparam>
+            <typeparam name="TKey">The type of the primary key.</typeparam>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository`2.Query(System.Object)">
+            <summary>
+            Queries the repository for entities matching the specified criteria.
+            </summary>
+            <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> representing the matching entities.</returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository`2.Query(System.Object,System.Collections.Generic.IEnumerable{RepoDb.OrderField})">
+            <summary>
+            Queries the repository for entities matching the specified criteria and allows
+            ordering the results.
+            </summary>
+            <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+            <param name="orderBy">The ordering specifications.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> representing the matching entities.</returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository`2.QueryAll">
+            <summary>
+            Queries all entities in the repository.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> representing all entities.</returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository`2.QueryAll(System.String,System.Boolean)">
+            <summary>
+            Queries all entities in the repository with caching support.
+            </summary>
+            <param name="cacheKey">The cache key.</param>
+            <param name="renewCache">Indicates whether to renew the cache.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> representing all entities.</returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IReadGenericRepository`2.Max(System.String,System.String,System.Object)">
+            <summary>
+            Gets the maximum value of the specified field for the specified table.
+            </summary>
+            <param name="tableName">The name of the table.</param>
+            <param name="fieldName">The name of the field.</param>
+            <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+            <returns>The maximum value as a nullable TKey.</returns>
+        </member>
+        <member name="T:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2">
+            <summary>
+                Defines a repository with methods for adding, updating, and deleting entities of type <typeparamref name="T" />
+                in the data source. This is the write-only part of the repository, meant to be used when the data is
+                not needed to be read immediately after being written.
+            </summary>
+            <typeparam name="T">The type of the entities in the repository.</typeparam>
+            <typeparam name="TKey">The type of the primary key of the entities.</typeparam>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Insert(`0)">
+            <summary>
+                Inserts a new entity into the data source.
+            </summary>
+            <param name="entity">The entity to insert.</param>
+            <returns>
+                The primary key of the inserted entity.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Insert(`0,Microsoft.Data.SqlClient.SqlConnection,System.Data.IDbTransaction)">
+            <summary>
+                Inserts a new entity into the data source using the provided connection and transaction.
+            </summary>
+            <param name="entity">The entity to insert.</param>
+            <param name="connection">The connection to use.</param>
+            <param name="transaction">The transaction to use.</param>
+            <returns>
+                The primary key of the inserted entity.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.InsertAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Inserts a range of new entities into the data source.
+            </summary>
+            <param name="entities">The entities to insert.</param>
+            <returns>
+                The number of entities that were inserted.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Merge(`0)">
+            <summary>
+                Merges the state of the given entity into the current session.
+            </summary>
+            <param name="entity">The entity to merge.</param>
+            <returns>
+                The primary key of the merged entity.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Merge(`0,System.Collections.Generic.IEnumerable{RepoDb.Field})">
+            <summary>
+                Merges the state of the given entity into the current session with qualifiers.
+            </summary>
+            <param name="entity">The entity to merge.</param>
+            <param name="qualifiers">The qualifiers for the merge.</param>
+            <returns>
+                The primary key of the merged entity.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Merge(`0,Microsoft.Data.SqlClient.SqlConnection,System.Data.IDbTransaction)">
+            <summary>
+                Merges the state of the given entity into the current session using the provided connection and
+                transaction.
+            </summary>
+            <param name="entity">The entity to merge.</param>
+            <param name="connection">The connection to use.</param>
+            <param name="transaction">The transaction to use.</param>
+            <returns>
+                The primary key of the merged entity.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.MergeAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Merges a range of entities into the current session.
+            </summary>
+            <param name="entities">The entities to merge.</param>
+            <returns>
+                The number of entities that were merged.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Delete(System.Object)">
+            <summary>
+                Deletes an entity with the given primary key or criteria.
+            </summary>
+            <param name="whereOrPrimaryKey">The primary key or criteria of the entity to delete.</param>
+            <returns>
+                The number of entities that were deleted.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.DeleteAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Deletes a range of entities.
+            </summary>
+            <param name="entities">The entities to delete.</param>
+            <returns>
+                The number of entities that were deleted.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Update(`0)">
+            <summary>
+                Updates the given entity in the data source.
+            </summary>
+            <param name="entity">The entity to update.</param>
+            <returns>
+                The number of entities that were updated.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.Update(`0,Microsoft.Data.SqlClient.SqlConnection,System.Data.IDbTransaction)">
+            <summary>
+                Updates the given entity in the data source using the provided connection and transaction.
+            </summary>
+            <param name="entity">The entity to update.</param>
+            <param name="connection">The connection to use.</param>
+            <param name="transaction">The transaction to use.</param>
+            <returns>
+                The number of entities that were updated.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.UpdateAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Updates a range of entities in the data source.
+            </summary>
+            <param name="entities">The entities to update.</param>
+            <returns>
+                The number of entities that were updated.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.ExecuteNonQuery(System.String,System.Data.CommandType,System.Collections.Generic.IEnumerable{System.Data.Common.DbParameter})">
+            <summary>
+                Executes a command that does not return any rows.
+            </summary>
+            <param name="commandText">The command text.</param>
+            <param name="commandType">The type of the command.</param>
+            <param name="parameters">The parameters for the command.</param>
+            <returns>
+                The number of rows affected.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.ExecuteScalar(System.String,System.Data.CommandType,System.Collections.Generic.IEnumerable{System.Data.Common.DbParameter})">
+            <summary>
+                Executes a command that returns a single value.
+            </summary>
+            <param name="commandText">The command text.</param>
+            <param name="commandType">The type of the command.</param>
+            <param name="parameters">The parameters for the command.</param>
+            <returns>
+                The result of the command.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.ExecuteScalar(System.String,System.Data.CommandType)">
+            <summary>
+                Executes a command that returns a single value.
+            </summary>
+            <param name="commandText">The command text.</param>
+            <param name="commandType">The type of the command.</param>
+            <returns>
+                The result of the command.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.ExecuteReader(System.String,System.Data.CommandType,System.Collections.Generic.IEnumerable{System.Data.Common.DbParameter})">
+            <summary>
+                Executes a command that returns a data reader.
+            </summary>
+            <param name="commandText">The command text.</param>
+            <param name="commandType">The type of the command.</param>
+            <param name="parameters">The parameters for the command.</param>
+            <returns>
+                A data reader for reading the result set.
+            </returns>
+        </member>
+        <member name="M:Gasolutions.Core.Repository.Interfaces.IWriteGenericRepository`2.ExecuteQuery(System.String,System.Data.CommandType,System.Collections.Generic.IEnumerable{System.Data.Common.DbParameter})">
+            <summary>
+                Executes a query that returns a sequence of entities.
+            </summary>
+            <param name="commandText">The command text.</param>
+            <param name="commandType">The type of the command.</param>
+            <param name="parameters">The parameters for the command.</param>
+            <returns>
+                A sequence of entities of type <typeparamref name="T" />.
+            </returns>
+        </member>
+    </members>
+</doc>

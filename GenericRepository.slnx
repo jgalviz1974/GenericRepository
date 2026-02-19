@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Gasolutions.Core.GenericRepository.csproj" />
+  <Project Path="test/Gasolutions.Core.GenericRepository.Tests.csproj" />
+</Solution>
