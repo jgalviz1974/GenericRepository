@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.9.0]
+### Changed
+- Add BulkInsert method to `IGenericRepository` interface for efficient batch operations
+
 ## [1.0.8.1]
 ### Changed
 - Implementations were moved to a separate project `Gasolutions.Core.GenericRepository.RepoDB` to improve modularity and maintainability

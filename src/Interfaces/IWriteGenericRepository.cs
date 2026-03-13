@@ -45,6 +45,28 @@ namespace Gasolutions.Core.Repository.Interfaces
         int InsertAll(IEnumerable<T> entities);
 
         /// <summary>
+        /// Inserts a collection of entities into the database in bulk, optionally using custom column mappings and
+        /// additional options.
+        /// </summary>
+        /// <remarks>This method is optimized for high-performance bulk insert operations and can
+        /// significantly improve throughput compared to individual inserts. When using custom mappings, ensure that the
+        /// mapping definitions accurately reflect the target database schema. If a transaction is provided, the bulk
+        /// insert is executed within its scope.</remarks>
+        /// <param name="entities">The collection of entities to insert. Cannot be null or empty.</param>
+        /// <param name="mappings">An optional collection of mapping definitions that specify how entity properties map to database columns. If
+        /// null, default property-to-column mapping is used.</param>
+        /// <param name="options">A bitwise combination of SqlBulkCopyOptions values that specify how the bulk copy operation is performed.</param>
+        /// <param name="hints">Optional table hints to apply to the bulk insert operation. Can be null.</param>
+        /// <param name="batchSize">The number of rows in each batch. If null, the default batch size is used.</param>
+        /// <param name="isReturnIdentity">true to return the identity value of the inserted entities; otherwise, false.</param>
+        /// <param name="usePhysicalPseudoTempTable">true to use a physical pseudo-temporary table for the operation; otherwise, false.</param>
+        /// <param name="transaction">An optional SqlTransaction to associate with the bulk insert operation. If null, the operation is executed
+        /// without a transaction.</param>
+        /// <returns>The identity value of the inserted entities if isReturnIdentity is true; otherwise, the default value of
+        /// TKey.</returns>
+        TKey BulkInsert(IEnumerable<T> entities, IEnumerable<BulkInsertMapItem>? mappings = null, SqlBulkCopyOptions options = default, string? hints = null, int? batchSize = null, bool isReturnIdentity = false, bool usePhysicalPseudoTempTable = false, SqlTransaction? transaction = null);
+
+        /// <summary>
         ///     Merges the state of the given entity into the current session.
         /// </summary>
         /// <param name="entity">The entity to merge.</param>
