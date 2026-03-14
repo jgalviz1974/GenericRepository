@@ -16,6 +16,19 @@ namespace Gasolutions.Core.Repository.Interfaces
         where TKey : struct
     {
         /// <summary>
+        /// Counts the number of entities in the repository.
+        /// </summary>
+        /// <returns>The count of matching entities.</returns>
+        TKey Count();
+
+        /// <summary>
+        /// Counts the number of entities in the repository that match the specified criteria.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria value.</param>
+        /// <returns>The count of matching entities.</returns>
+        TKey Count(object whereOrPrimaryKey);
+
+        /// <summary>
         /// Queries the repository for entities matching the specified criteria.
         /// </summary>
         /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>

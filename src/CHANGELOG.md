@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.9.3]
+### Added
+- Add Count methods to `IGenericRepository` interface for counting records in a table.
+- 
 ## [1.0.9.0]
 ### Changed
 - Add BulkInsert method to `IGenericRepository` interface for efficient batch operations
