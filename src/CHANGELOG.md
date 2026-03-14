@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.9.4] 
+### Fixed
+- Count methods now return long type to accommodate large record counts and prevent overflow issues
+
 ## [1.0.9.3]
 ### Added
 - Add Count methods to `IGenericRepository` interface for counting records in a table.
