@@ -63,9 +63,9 @@ La arquitectura actual prioriza una estrategia **contract-first**:
 
 ```mermaid
 flowchart LR
-    U[Aplicación Consumidora\n(API/Worker/Web)] --> C[Paquete de Contratos\nGasolutions.Core.GenericRepository]
-    C --> I[Implementación Concreta\nGasolutions.Core.GenericRepository.RepoDB]
-    I --> DB[(SQL Server)]
+    U["Aplicación Consumidora<br/>(API/Worker/Web)"] --> C["Paquete de Contratos<br/>Gasolutions.Core.GenericRepository"]
+    C --> I["Implementación Concreta<br/>Gasolutions.Core.GenericRepository.RepoDB"]
+    I --> DB[("SQL Server")]
 ```
 
 ### C4 - Nivel 2 (Contenedores)
@@ -89,10 +89,10 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    A[IReadGenericRepository\n(consulta ad-hoc JSON)]
-    B[IReadGenericRepository<T,TKey>\n(lectura tipada)]
-    C[IWriteGenericRepository<T,TKey>\n(escritura y comandos)]
-    G[GlobalUsings\n(RepoDb/SqlClient/System.Data)]
+    A["IReadGenericRepository<br/>(consulta ad-hoc JSON)"]
+    B["IReadGenericRepository&lt;T,TKey&gt;<br/>(lectura tipada)"]
+    C["IWriteGenericRepository&lt;T,TKey&gt;<br/>(escritura y comandos)"]
+    G["GlobalUsings<br/>(RepoDb/SqlClient/System.Data)"]
 
     G --> A
     G --> B
