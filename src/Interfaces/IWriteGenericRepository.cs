@@ -115,6 +115,8 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// </returns>
         int Delete(object whereOrPrimaryKey);
 
+        int Delete(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+
         /// <summary>
         ///     Deletes a range of entities.
         /// </summary>

@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.9.6]
+### Added
+- Added Delete method with transaction support to `IGenericRepository` interface for enhanced data integrity during delete operations.
+
 ## [1.0.9.4] 
 ### Fixed
 - Count methods now return long type to accommodate large record counts and prevent overflow issues
