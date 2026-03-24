@@ -62,16 +62,11 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// Gets the maximum value of the specified field for the specified table.
         /// </summary>
         /// <param name="entity">The entity instance.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>The maximum value as a nullable TKey.</returns>
-        TKey? Max(T entity, SqlConnection connection, IDbTransaction transaction);
-
-        /// <summary>
-        /// Gets the maximum value of the specified field for the specified table.
-        /// </summary>
-        /// <param name="entity">The entity instance.</param>
-        /// <returns>The maximum value as a nullable TKey.</returns>
-        TKey? Max(T entity);
+        TKey? Max(T entity, string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
     }
 }
