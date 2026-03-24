@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.3]
+### Changed
+- Deleted entity field from Max method.
+
 ## [1.0.10.2]
 ### Changed
 - Changed ´Max´ method adding field name and additional criteria, removing previous versions. 
