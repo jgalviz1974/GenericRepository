@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.1]
+### Changed
+- Changed the return type of Max methods to support nullable values.
+- 
 ## [1.0.10.0]
 ### Added
 - Added 'Max' method to `IGenericRepository` interface for retrieving the maximum value of a specified column in a table, enhancing data analysis capabilities.

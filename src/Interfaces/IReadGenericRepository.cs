@@ -33,7 +33,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="fieldName">The name of the field.</param>
         /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
         /// <returns>The maximum value as an object.</returns>
-        object Max(string tableName, string fieldName, object whereOrPrimaryKey);
+        object? Max(string tableName, string fieldName, object whereOrPrimaryKey);
 
         /// <summary>
         /// Obtiene el valor máximo de un campo específico en una tabla de base de datos, aplicando un filtro opcional o
@@ -48,6 +48,6 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// transacción.</param>
         /// <returns>El valor máximo encontrado en el campo especificado. Devuelve null si no existen registros que cumplan la
         /// condición.</returns>
-        object Max(string tableName, string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+        object? Max(string tableName, string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
     }
 }
