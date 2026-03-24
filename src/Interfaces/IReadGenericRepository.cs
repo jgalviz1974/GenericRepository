@@ -25,5 +25,29 @@ namespace Gasolutions.Core.Repository.Interfaces
         ///     Thrown when there is an error executing the query.
         /// </exception>
         string QueryAndReturnJson(string commandText, CommandType commandType);
+
+        /// <summary>
+        /// Gets the maximum value of the specified field for the specified table.
+        /// </summary>
+        /// <param name="tableName">The name of the table.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <returns>The maximum value as an object.</returns>
+        object Max(string tableName, string fieldName, object whereOrPrimaryKey);
+
+        /// <summary>
+        /// Obtiene el valor máximo de un campo específico en una tabla de base de datos, aplicando un filtro opcional o
+        /// clave primaria.
+        /// </summary>
+        /// <param name="tableName">El nombre de la tabla en la que se realizará la consulta.</param>
+        /// <param name="fieldName">El nombre del campo cuyo valor máximo se desea obtener.</param>
+        /// <param name="whereOrPrimaryKey">Una condición de filtro para la consulta, que puede ser una expresión de filtro o el valor de la clave
+        /// primaria. Si es null, se calcula el máximo sobre todos los registros.</param>
+        /// <param name="connection">La conexión de base de datos SQL Server que se utilizará para ejecutar la consulta. Debe estar abierta.</param>
+        /// <param name="transaction">La transacción de base de datos en la que se ejecutará la consulta, o null si no se utiliza ninguna
+        /// transacción.</param>
+        /// <returns>El valor máximo encontrado en el campo especificado. Devuelve null si no existen registros que cumplan la
+        /// condición.</returns>
+        object Max(string tableName, string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
     }
 }

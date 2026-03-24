@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.0]
+### Added
+- Added 'Max' method to `IGenericRepository` interface for retrieving the maximum value of a specified column in a table, enhancing data analysis capabilities.
+
 ## [1.0.9.6]
 ### Added
 - Added Delete method with transaction support to `IGenericRepository` interface for enhanced data integrity during delete operations.
