@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.4]
+### Added
+- Add ExecuteScalar method to `IGenericRepository` interface for executing scalar queries.
+- 
 ## [1.0.10.3]
 ### Changed
 - Deleted entity field from Max method.

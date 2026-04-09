@@ -27,6 +27,16 @@ namespace Gasolutions.Core.Repository.Interfaces
         string QueryAndReturnJson(string commandText, CommandType commandType);
 
         /// <summary>
+        /// Queries the data source and returns a single scalar value of type T.
+        /// </summary>
+        /// <typeparam name="T">The type of the scalar value to return.</typeparam>
+        /// <param name="commandText">The command text to execute against the data source.</param>
+        /// <param name="commandType">The type of the command (e.g., Text, StoredProcedure).</param>
+        /// <returns>The scalar value of type T.</returns>
+        /// <exception cref="Exception">Thrown when there is an error executing the query.</exception>
+        T ExecuteScalar<T>(string commandText, CommandType commandType);
+
+        /// <summary>
         /// Gets the maximum value of the specified field for the specified table.
         /// </summary>
         /// <param name="tableName">The name of the table.</param>
