@@ -31,10 +31,11 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// </summary>
         /// <param name="commandText">The command text to execute against the data source.</param>
         /// <param name="commandType">The type of the command (e.g., Text, StoredProcedure).</param>
+        /// <param name="connection">The SQL connection to use for executing the command. Must be open.</param>
         /// <param name="transaction">The transaction within which the command should be executed.</param>
         /// <returns>A JSON string containing the query results.</returns>
         /// <exception cref="Exception">Thrown when there is an error executing the query.</exception>
-        string QueryAndReturnJson(string commandText, CommandType commandType, IDbTransaction transaction);
+        string QueryAndReturnJson(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries the data source and returns a single scalar value of type T.
@@ -53,11 +54,12 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <typeparam name="T">El tipo al que se convertirá el valor devuelto.</typeparam>
         /// <param name="commandText">El texto del comando SQL que se va a ejecutar. No puede ser nulo ni estar vacío.</param>
         /// <param name="commandType">El tipo de comando que se va a ejecutar, como texto o procedimiento almacenado.</param>
+        /// <param name="connection">The SQL connection to use for executing the command. Must be open.</param>
         /// <param name="transaction">La transacción de base de datos en la que se ejecutará el comando, o null para ejecutar fuera de una
         /// transacción.</param>
         /// <returns>El valor de la primera columna de la primera fila del conjunto de resultados, convertido al tipo
         /// especificado. Si el resultado es DBNull, se devuelve el valor predeterminado de T.</returns>
-        T ExecuteScalar<T>(string commandText, CommandType commandType, IDbTransaction transaction);
+        T ExecuteScalar<T>(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Gets the maximum value of the specified field for the specified table.
