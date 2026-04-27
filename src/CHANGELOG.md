@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.8]
+### Changed
+-- Updated `Max` method in `IReadGenericRepositoryT` interface to return nullable `TKey` with transaction mode, enhancing the method's flexibility and allowing for better handling of scenarios where a maximum value may not exist or when transactions are involved, thus improving the robustness and reliability of data retrieval operations in applications using this repository.
+
 ## [1.0.10.7]
 ### Changed
 - Added `Max` method in `IReadGenericRepositoryT` interface to return nullable `TKey` without transaction mode.
