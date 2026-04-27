@@ -1,4 +1,8 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.7]
+### Changed
+- Added `Max` method in `IReadGenericRepositoryT` interface to return nullable `TKey` without transaction mode.
+
 ## [1.0.10.6]
 ### Changed
 - Bug correction in ExecuteScalar method of `IGenericRepository` interface to ensure proper handling of null values and exceptions, improving the robustness and reliability of scalar query executions in applications using this repository.

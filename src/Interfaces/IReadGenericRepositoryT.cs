@@ -67,5 +67,14 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="transaction">The database transaction.</param>
         /// <returns>The maximum value as a nullable TKey.</returns>
         TKey? Max(string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        /// Gets the maximum value of the specified field for the specified table.
+        /// </summary>
+        /// <param name="tableName">The name of the table.</param>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <returns>The maximum value as an object.</returns>
+        TKey? Max(string tableName, string fieldName, object whereOrPrimaryKey);
     }
 }
