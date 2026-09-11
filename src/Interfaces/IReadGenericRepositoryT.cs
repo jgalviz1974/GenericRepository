@@ -34,7 +34,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>The count of matching entities.</returns>
-        long Count(SqlConnection connection, IDbTransaction transaction);
+        long Count(IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Counts the number of entities in the repository that match the specified criteria.
@@ -60,7 +60,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>The count of matching entities.</returns>
-        long Count(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+        long Count(object whereOrPrimaryKey, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries the repository for entities matching the specified criteria.
@@ -85,7 +85,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
-        IEnumerable<T> Query(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+        IEnumerable<T> Query(object whereOrPrimaryKey, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries the repository for entities matching the specified criteria and allows
@@ -94,7 +94,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
         /// <param name="orderBy">The ordering specifications.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
-        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<OrderField> orderBy);
+        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<string> orderBy);
 
         /// <summary>
         /// Queries the repository for entities matching the specified criteria and allows ordering the results using the
@@ -104,7 +104,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="orderBy">The ordering specifications.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
-        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<OrderField> orderBy, IDbTransaction transaction);
+        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<string> orderBy, IDbTransaction transaction);
 
         /// <summary>
         /// Queries the repository for entities matching the specified criteria and allows ordering the results using the
@@ -115,7 +115,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
-        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<OrderField> orderBy, SqlConnection connection, IDbTransaction transaction);
+        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<string> orderBy, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries all entities in the repository.
@@ -136,7 +136,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
-        IEnumerable<T> QueryAll(SqlConnection connection, IDbTransaction transaction);
+        IEnumerable<T> QueryAll(IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries all entities in the repository with caching support.
@@ -163,7 +163,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
-        IEnumerable<T> QueryAll(string cacheKey, bool renewCache, SqlConnection connection, IDbTransaction transaction);
+        IEnumerable<T> QueryAll(string cacheKey, bool renewCache, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Gets the maximum value of the specified field for the specified table.
@@ -173,7 +173,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>The maximum value as a nullable TKey.</returns>
-        TKey? Max(string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+        TKey? Max(string fieldName, object whereOrPrimaryKey, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Gets the maximum value of the specified field for the specified table using the specified transaction.
@@ -207,6 +207,6 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="connection">The SQL connection.</param>
         /// <param name="transaction">The database transaction.</param>
         /// <returns>The maximum value as a nullable TKey.</returns>
-        TKey? Max(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+        TKey? Max(object whereOrPrimaryKey, IDbConnection connection, IDbTransaction transaction);
     }
 }

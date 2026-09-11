@@ -14,7 +14,7 @@
 	<RepositoryType>git</RepositoryType>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<AssemblyVersion>1.0.10.9</AssemblyVersion>
+	<AssemblyVersion>1.0.10.11</AssemblyVersion>
     <Version>$(AssemblyVersion)</Version>
     <FileVersion>$(AssemblyVersion)</FileVersion>
 	<PackageOutputPath Condition="'$(SolutionDir)' != ''">$(SolutionDir)nupkgs</PackageOutputPath>
@@ -44,10 +44,8 @@
 	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="RepoDb.SqlServer" Version="1.13.2-alpha1" />
-  </ItemGroup>
+	<ItemGroup>
+	</ItemGroup>
 
   <ItemGroup>
     <None Update="readme.md">
@@ -55,6 +53,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Pack>True</Pack>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Roslynator.Analyzers" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

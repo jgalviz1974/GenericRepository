@@ -33,7 +33,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the inserted entity.
         /// </returns>
-        TKey Insert(T entity, SqlConnection connection, IDbTransaction transaction);
+        TKey Insert(T entity, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Inserts a range of new entities into the data source.
@@ -53,7 +53,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The number of entities that were inserted.
         /// </returns>
-        int InsertAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+        int InsertAll(IEnumerable<T> entities, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Inserts a range of new entities into the data source using the provided transaction.
@@ -76,16 +76,12 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="entities">The collection of entities to insert. Cannot be null or empty.</param>
         /// <param name="mappings">An optional collection of mapping definitions that specify how entity properties map to database columns. If
         /// null, default property-to-column mapping is used.</param>
-        /// <param name="options">A bitwise combination of SqlBulkCopyOptions values that specify how the bulk copy operation is performed.</param>
-        /// <param name="hints">Optional table hints to apply to the bulk insert operation. Can be null.</param>
-        /// <param name="batchSize">The number of rows in each batch. If null, the default batch size is used.</param>
-        /// <param name="isReturnIdentity">true to return the identity value of the inserted entities; otherwise, false.</param>
-        /// <param name="usePhysicalPseudoTempTable">true to use a physical pseudo-temporary table for the operation; otherwise, false.</param>
-        /// <param name="transaction">An optional SqlTransaction to associate with the bulk insert operation. If null, the operation is executed
+        /// <param name="options">Bulk insert options.</param>
+        /// <param name="transaction">An optional transaction to associate with the bulk insert operation. If null, the operation is executed
         /// without a transaction.</param>
-        /// <returns>The identity value of the inserted entities if isReturnIdentity is true; otherwise, the default value of
+        /// <returns>The identity value of the inserted entities if ReturnIdentity is true; otherwise, the default value of
         /// TKey.</returns>
-        TKey BulkInsert(IEnumerable<T> entities, IEnumerable<BulkInsertMapItem>? mappings = null, SqlBulkCopyOptions options = default, string? hints = null, int? batchSize = null, bool isReturnIdentity = false, bool usePhysicalPseudoTempTable = false, SqlTransaction? transaction = null);
+        TKey BulkInsert(IEnumerable<T> entities, IEnumerable<BulkInsertColumnMap>? mappings = null, BulkInsertOptions? options = null, IDbTransaction? transaction = null);
 
         /// <summary>
         ///     Merges the state of the given entity into the current session.
@@ -104,7 +100,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the merged entity.
         /// </returns>
-        TKey Merge(T entity, IEnumerable<Field> qualifiers);
+        TKey Merge(T entity, IEnumerable<RepositoryField> qualifiers);
 
         /// <summary>
         ///     Merges the state of the given entity into the current session with qualifiers using the provided
@@ -117,7 +113,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the merged entity.
         /// </returns>
-        TKey Merge(T entity, IEnumerable<Field> qualifiers, SqlConnection connection, IDbTransaction transaction);
+        TKey Merge(T entity, IEnumerable<RepositoryField> qualifiers, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Merges the state of the given entity into the current session with qualifiers using the provided
@@ -129,7 +125,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the merged entity.
         /// </returns>
-        TKey Merge(T entity, IEnumerable<Field> qualifiers, IDbTransaction transaction);
+        TKey Merge(T entity, IEnumerable<RepositoryField> qualifiers, IDbTransaction transaction);
 
         /// <summary>
         ///     Merges the state of the given entity into the current session using the provided connection and
@@ -141,7 +137,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the merged entity.
         /// </returns>
-        TKey Merge(T entity, SqlConnection connection, IDbTransaction transaction);
+        TKey Merge(T entity, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Merges a range of entities into the current session.
@@ -161,7 +157,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The number of entities that were merged.
         /// </returns>
-        int MergeAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+        int MergeAll(IEnumerable<T> entities, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Merges a range of entities into the current session using the provided transaction.
@@ -191,7 +187,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The number of entities that were deleted.
         /// </returns>
-        int Delete(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+        int Delete(object whereOrPrimaryKey, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Deletes a range of entities.
@@ -211,7 +207,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The number of entities that were deleted.
         /// </returns>
-        int DeleteAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+        int DeleteAll(IEnumerable<T> entities, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Deletes a range of entities using the provided transaction.
@@ -241,7 +237,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The number of entities that were updated.
         /// </returns>
-        int Update(T entity, SqlConnection connection, IDbTransaction transaction);
+        int Update(T entity, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Updates a range of entities in the data source.
@@ -261,7 +257,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The number of entities that were updated.
         /// </returns>
-        int UpdateAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+        int UpdateAll(IEnumerable<T> entities, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Updates a range of entities in the data source using the provided transaction.
@@ -350,7 +346,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The result of the command.
         /// </returns>
-        string ExecuteScalar(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
+        string ExecuteScalar(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Executes a command that returns a data reader.
@@ -386,7 +382,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     A data reader for reading the result set.
         /// </returns>
-        IDataReader ExecuteReader(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
+        IDataReader ExecuteReader(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
 
         /// <summary>
         ///     Executes a query that returns a sequence of entities.
@@ -422,6 +418,6 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     A sequence of entities of type <typeparamref name="T" />.
         /// </returns>
-        IEnumerable<T> ExecuteQuery(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
+        IEnumerable<T> ExecuteQuery(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
     }
 }

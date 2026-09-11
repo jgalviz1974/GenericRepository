@@ -1,4 +1,14 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.11]
+### Changed
+- Refactored repository contracts to be database-provider agnostic.
+- Replaced RepoDb- and SQL Server-specific types with neutral abstractions.
+- Removed direct dependency on RepoDb and Microsoft.Data.SqlClient from the contracts project.
+
+## [1.0.10.10]
+### Changed
+- Updated RepoDb.SlServer package to version 1.16.0
+
 ## [1.0.10.9]
 ### Changed
 - Added transaction-enabled overloads to `IWriteGenericRepository` for batch write operations (`InsertAll`, `MergeAll`, `DeleteAll`, and `UpdateAll`).

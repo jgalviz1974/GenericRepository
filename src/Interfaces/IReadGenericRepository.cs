@@ -31,11 +31,11 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// </summary>
         /// <param name="commandText">The command text to execute against the data source.</param>
         /// <param name="commandType">The type of the command (e.g., Text, StoredProcedure).</param>
-        /// <param name="connection">The SQL connection to use for executing the command. Must be open.</param>
+        /// <param name="connection">The connection to use for executing the command. Must be open.</param>
         /// <param name="transaction">The transaction within which the command should be executed.</param>
         /// <returns>A JSON string containing the query results.</returns>
         /// <exception cref="Exception">Thrown when there is an error executing the query.</exception>
-        string QueryAndReturnJson(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
+        string QueryAndReturnJson(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries the data source and returns the result as JSON, using the specified transaction.
@@ -69,7 +69,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// transacción.</param>
         /// <returns>El valor de la primera columna de la primera fila del conjunto de resultados, convertido al tipo
         /// especificado. Si el resultado es DBNull, se devuelve el valor predeterminado de T.</returns>
-        T ExecuteScalar<T>(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
+        T ExecuteScalar<T>(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Ejecuta un comando SQL y devuelve el valor de la primera columna de la primera fila del conjunto de
@@ -105,7 +105,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// transacción.</param>
         /// <returns>El valor máximo encontrado en el campo especificado. Devuelve null si no existen registros que cumplan la
         /// condición.</returns>
-        object? Max(string tableName, string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+        object? Max(string tableName, string fieldName, object whereOrPrimaryKey, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Obtiene el valor máximo de un campo específico en una tabla de base de datos, aplicando un filtro opcional o
