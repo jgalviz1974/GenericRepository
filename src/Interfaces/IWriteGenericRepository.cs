@@ -45,6 +45,27 @@ namespace Gasolutions.Core.Repository.Interfaces
         int InsertAll(IEnumerable<T> entities);
 
         /// <summary>
+        ///     Inserts a range of new entities into the data source using the provided connection and transaction.
+        /// </summary>
+        /// <param name="entities">The entities to insert.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were inserted.
+        /// </returns>
+        int InsertAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        ///     Inserts a range of new entities into the data source using the provided transaction.
+        /// </summary>
+        /// <param name="entities">The entities to insert.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were inserted.
+        /// </returns>
+        int InsertAll(IEnumerable<T> entities, IDbTransaction transaction);
+
+        /// <summary>
         /// Inserts a collection of entities into the database in bulk, optionally using custom column mappings and
         /// additional options.
         /// </summary>
@@ -86,6 +107,31 @@ namespace Gasolutions.Core.Repository.Interfaces
         TKey Merge(T entity, IEnumerable<Field> qualifiers);
 
         /// <summary>
+        ///     Merges the state of the given entity into the current session with qualifiers using the provided
+        ///     connection and transaction.
+        /// </summary>
+        /// <param name="entity">The entity to merge.</param>
+        /// <param name="qualifiers">The qualifiers for the merge.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The primary key of the merged entity.
+        /// </returns>
+        TKey Merge(T entity, IEnumerable<Field> qualifiers, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        ///     Merges the state of the given entity into the current session with qualifiers using the provided
+        ///     transaction.
+        /// </summary>
+        /// <param name="entity">The entity to merge.</param>
+        /// <param name="qualifiers">The qualifiers for the merge.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The primary key of the merged entity.
+        /// </returns>
+        TKey Merge(T entity, IEnumerable<Field> qualifiers, IDbTransaction transaction);
+
+        /// <summary>
         ///     Merges the state of the given entity into the current session using the provided connection and
         ///     transaction.
         /// </summary>
@@ -107,6 +153,27 @@ namespace Gasolutions.Core.Repository.Interfaces
         int MergeAll(IEnumerable<T> entities);
 
         /// <summary>
+        ///     Merges a range of entities into the current session using the provided connection and transaction.
+        /// </summary>
+        /// <param name="entities">The entities to merge.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were merged.
+        /// </returns>
+        int MergeAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        ///     Merges a range of entities into the current session using the provided transaction.
+        /// </summary>
+        /// <param name="entities">The entities to merge.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were merged.
+        /// </returns>
+        int MergeAll(IEnumerable<T> entities, IDbTransaction transaction);
+
+        /// <summary>
         ///     Deletes an entity with the given primary key or criteria.
         /// </summary>
         /// <param name="whereOrPrimaryKey">The primary key or criteria of the entity to delete.</param>
@@ -115,6 +182,15 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// </returns>
         int Delete(object whereOrPrimaryKey);
 
+        /// <summary>
+        ///    Deletes an entity with the given primary key or criteria using the provided connection and transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The primary key or criteria of the entity to delete.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were deleted.
+        /// </returns>
         int Delete(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
@@ -125,6 +201,27 @@ namespace Gasolutions.Core.Repository.Interfaces
         ///     The number of entities that were deleted.
         /// </returns>
         int DeleteAll(IEnumerable<T> entities);
+
+        /// <summary>
+        ///     Deletes a range of entities using the provided connection and transaction.
+        /// </summary>
+        /// <param name="entities">The entities to delete.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were deleted.
+        /// </returns>
+        int DeleteAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        ///     Deletes a range of entities using the provided transaction.
+        /// </summary>
+        /// <param name="entities">The entities to delete.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were deleted.
+        /// </returns>
+        int DeleteAll(IEnumerable<T> entities, IDbTransaction transaction);
 
         /// <summary>
         ///     Updates the given entity in the data source.
@@ -156,6 +253,27 @@ namespace Gasolutions.Core.Repository.Interfaces
         int UpdateAll(IEnumerable<T> entities);
 
         /// <summary>
+        ///     Updates a range of entities in the data source using the provided connection and transaction.
+        /// </summary>
+        /// <param name="entities">The entities to update.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were updated.
+        /// </returns>
+        int UpdateAll(IEnumerable<T> entities, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        ///     Updates a range of entities in the data source using the provided transaction.
+        /// </summary>
+        /// <param name="entities">The entities to update.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The number of entities that were updated.
+        /// </returns>
+        int UpdateAll(IEnumerable<T> entities, IDbTransaction transaction);
+
+        /// <summary>
         ///     Executes a command that does not return any rows.
         /// </summary>
         /// <param name="commandText">The command text.</param>
@@ -167,6 +285,18 @@ namespace Gasolutions.Core.Repository.Interfaces
         int ExecuteNonQuery(string commandText, CommandType commandType, IEnumerable<DbParameter>? parameters = null);
 
         /// <summary>
+        ///    Executes a command that does not return any rows, using the provided transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <param name="parameters">The parameters for the command.</param>
+        /// <returns>
+        ///     The number of rows affected.
+        /// </returns>
+        int ExecuteNonQuery(string commandText, CommandType commandType, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
+
+        /// <summary>
         ///     Executes a command that returns a single value.
         /// </summary>
         /// <param name="commandText">The command text.</param>
@@ -175,7 +305,19 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The result of the command.
         /// </returns>
-        TKey ExecuteScalar(string commandText, CommandType commandType, IEnumerable<DbParameter>? parameters = null);
+        TKey ExecuteScalar(string commandText, CommandType commandType, IEnumerable<DbParameter>? parameters);
+
+        /// <summary>
+        ///    Executes a command that returns a single value, using the provided transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <param name="parameters">The parameters for the command.</param>
+        /// <returns>
+        ///     The result of the command.
+        /// </returns>
+        TKey ExecuteScalar(string commandText, CommandType commandType, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
 
         /// <summary>
         ///     Executes a command that returns a single value.
@@ -186,6 +328,29 @@ namespace Gasolutions.Core.Repository.Interfaces
         ///     The result of the command.
         /// </returns>
         string ExecuteScalar(string commandText, CommandType commandType);
+
+        /// <summary>
+        ///     Executes a command that returns a single value, using the provided transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The result of the command.
+        /// </returns>
+        string ExecuteScalar(string commandText, CommandType commandType, IDbTransaction transaction);
+
+        /// <summary>
+        ///     Executes a command that returns a single value using the provided connection and transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>
+        ///     The result of the command.
+        /// </returns>
+        string ExecuteScalar(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Executes a command that returns a data reader.
@@ -199,6 +364,31 @@ namespace Gasolutions.Core.Repository.Interfaces
         IDataReader ExecuteReader(string commandText, CommandType commandType, IEnumerable<DbParameter>? parameters = null);
 
         /// <summary>
+        ///     Executes a command that returns a data reader using the provided transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <param name="parameters">The parameters for the command.</param>
+        /// <returns>
+        ///     A data reader for reading the result set.
+        /// </returns>
+        IDataReader ExecuteReader(string commandText, CommandType commandType, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
+
+        /// <summary>
+        ///     Executes a command that returns a data reader using the provided connection and transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <param name="parameters">The parameters for the command.</param>
+        /// <returns>
+        ///     A data reader for reading the result set.
+        /// </returns>
+        IDataReader ExecuteReader(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
+
+        /// <summary>
         ///     Executes a query that returns a sequence of entities.
         /// </summary>
         /// <param name="commandText">The command text.</param>
@@ -208,5 +398,30 @@ namespace Gasolutions.Core.Repository.Interfaces
         ///     A sequence of entities of type <typeparamref name="T" />.
         /// </returns>
         IEnumerable<T> ExecuteQuery(string commandText, CommandType commandType, IEnumerable<DbParameter>? parameters = null);
+
+        /// <summary>
+        ///     Executes a query that returns a sequence of entities using the provided transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <param name="parameters">The parameters for the command.</param>
+        /// <returns>
+        ///     A sequence of entities of type <typeparamref name="T" />.
+        /// </returns>
+        IEnumerable<T> ExecuteQuery(string commandText, CommandType commandType, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
+
+        /// <summary>
+        ///     Executes a query that returns a sequence of entities using the provided connection and transaction.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="commandType">The type of the command.</param>
+        /// <param name="connection">The connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <param name="parameters">The parameters for the command.</param>
+        /// <returns>
+        ///     A sequence of entities of type <typeparamref name="T" />.
+        /// </returns>
+        IEnumerable<T> ExecuteQuery(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
     }
 }

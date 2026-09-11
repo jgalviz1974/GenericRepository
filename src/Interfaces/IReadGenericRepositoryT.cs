@@ -22,6 +22,21 @@ namespace Gasolutions.Core.Repository.Interfaces
         long Count();
 
         /// <summary>
+        /// Counts the number of entities in the repository using the specified transaction.
+        /// </summary>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>The count of matching entities.</returns>
+        long Count(IDbTransaction transaction);
+
+        /// <summary>
+        /// Counts the number of entities in the repository using the specified connection and transaction.
+        /// </summary>
+        /// <param name="connection">The SQL connection.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>The count of matching entities.</returns>
+        long Count(SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
         /// Counts the number of entities in the repository that match the specified criteria.
         /// </summary>
         /// <param name="whereOrPrimaryKey">The criteria value.</param>
@@ -29,11 +44,48 @@ namespace Gasolutions.Core.Repository.Interfaces
         long Count(object whereOrPrimaryKey);
 
         /// <summary>
+        /// Counts the number of entities in the repository that match the specified criteria using the specified
+        /// transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria value.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>The count of matching entities.</returns>
+        long Count(object whereOrPrimaryKey, IDbTransaction transaction);
+
+        /// <summary>
+        /// Counts the number of entities in the repository that match the specified criteria using the specified
+        /// connection and transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria value.</param>
+        /// <param name="connection">The SQL connection.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>The count of matching entities.</returns>
+        long Count(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
         /// Queries the repository for entities matching the specified criteria.
         /// </summary>
         /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
         IEnumerable<T> Query(object whereOrPrimaryKey);
+
+        /// <summary>
+        /// Queries the repository for entities matching the specified criteria using the specified transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
+        IEnumerable<T> Query(object whereOrPrimaryKey, IDbTransaction transaction);
+
+        /// <summary>
+        /// Queries the repository for entities matching the specified criteria using the specified connection and
+        /// transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <param name="connection">The SQL connection.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
+        IEnumerable<T> Query(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries the repository for entities matching the specified criteria and allows
@@ -45,10 +97,46 @@ namespace Gasolutions.Core.Repository.Interfaces
         IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<OrderField> orderBy);
 
         /// <summary>
+        /// Queries the repository for entities matching the specified criteria and allows ordering the results using the
+        /// specified transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <param name="orderBy">The ordering specifications.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
+        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<OrderField> orderBy, IDbTransaction transaction);
+
+        /// <summary>
+        /// Queries the repository for entities matching the specified criteria and allows ordering the results using the
+        /// specified connection and transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <param name="orderBy">The ordering specifications.</param>
+        /// <param name="connection">The SQL connection.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing the matching entities.</returns>
+        IEnumerable<T> Query(object whereOrPrimaryKey, IEnumerable<OrderField> orderBy, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
         /// Queries all entities in the repository.
         /// </summary>
         /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
         IEnumerable<T> QueryAll();
+
+        /// <summary>
+        /// Queries all entities in the repository using the specified transaction.
+        /// </summary>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
+        IEnumerable<T> QueryAll(IDbTransaction transaction);
+
+        /// <summary>
+        /// Queries all entities in the repository using the specified connection and transaction.
+        /// </summary>
+        /// <param name="connection">The SQL connection.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
+        IEnumerable<T> QueryAll(SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries all entities in the repository with caching support.
@@ -57,6 +145,25 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <param name="renewCache">Indicates whether to renew the cache.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
         IEnumerable<T> QueryAll(string cacheKey, bool renewCache);
+
+        /// <summary>
+        /// Queries all entities in the repository with caching support using the specified transaction.
+        /// </summary>
+        /// <param name="cacheKey">The cache key.</param>
+        /// <param name="renewCache">Indicates whether to renew the cache.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
+        IEnumerable<T> QueryAll(string cacheKey, bool renewCache, IDbTransaction transaction);
+
+        /// <summary>
+        /// Queries all entities in the repository with caching support using the specified connection and transaction.
+        /// </summary>
+        /// <param name="cacheKey">The cache key.</param>
+        /// <param name="renewCache">Indicates whether to renew the cache.</param>
+        /// <param name="connection">The SQL connection.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> representing all entities.</returns>
+        IEnumerable<T> QueryAll(string cacheKey, bool renewCache, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Gets the maximum value of the specified field for the specified table.
@@ -69,10 +176,37 @@ namespace Gasolutions.Core.Repository.Interfaces
         TKey? Max(string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
+        /// Gets the maximum value of the specified field for the specified table using the specified transaction.
+        /// </summary>
+        /// <param name="fieldName">The name of the field.</param>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>The maximum value as a nullable TKey.</returns>
+        TKey? Max(string fieldName, object whereOrPrimaryKey, IDbTransaction transaction);
+
+        /// <summary>
         /// Gets the maximum value of the specified field for the specified table.
         /// </summary>
         /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
         /// <returns>The maximum value as a nullable TKey.</returns>
         TKey? Max(object whereOrPrimaryKey);
+
+        /// <summary>
+        /// Gets the maximum value of the specified field for the specified table using the specified transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>The maximum value as a nullable TKey.</returns>
+        TKey? Max(object whereOrPrimaryKey, IDbTransaction transaction);
+
+        /// <summary>
+        /// Gets the maximum value of the specified field for the specified table using the specified connection and
+        /// transaction.
+        /// </summary>
+        /// <param name="whereOrPrimaryKey">The criteria or primary key value.</param>
+        /// <param name="connection">The SQL connection.</param>
+        /// <param name="transaction">The database transaction.</param>
+        /// <returns>The maximum value as a nullable TKey.</returns>
+        TKey? Max(object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
     }
 }

@@ -1,4 +1,11 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.9]
+### Changed
+- Added transaction-enabled overloads to `IWriteGenericRepository` for batch write operations (`InsertAll`, `MergeAll`, `DeleteAll`, and `UpdateAll`).
+- Added transaction-enabled overloads to `IWriteGenericRepository` for `Merge` with qualifiers and for command/query execution methods (`ExecuteScalar`, `ExecuteReader`, and `ExecuteQuery`).
+- Added transaction-enabled overloads to `IReadGenericRepository` for `QueryAndReturnJson`, `ExecuteScalar<T>`, and `Max`.
+- Added transaction-enabled overloads to `IReadGenericRepository<T, TKey>` for `Count`, `Query`, `QueryAll`, and `Max`.
+
 ## [1.0.10.8]
 ### Changed
 -- Updated `Max` method in `IReadGenericRepositoryT` interface to return nullable `TKey` with transaction mode, enhancing the method's flexibility and allowing for better handling of scenarios where a maximum value may not exist or when transactions are involved, thus improving the robustness and reliability of data retrieval operations in applications using this repository.

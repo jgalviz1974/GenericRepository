@@ -38,6 +38,16 @@ namespace Gasolutions.Core.Repository.Interfaces
         string QueryAndReturnJson(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
+        /// Queries the data source and returns the result as JSON, using the specified transaction.
+        /// </summary>
+        /// <param name="commandText">The command text to execute against the data source.</param>
+        /// <param name="commandType">The type of the command (e.g., Text, StoredProcedure).</param>
+        /// <param name="transaction">The transaction within which the command should be executed.</param>
+        /// <returns>A JSON string containing the query results.</returns>
+        /// <exception cref="Exception">Thrown when there is an error executing the query.</exception>
+        string QueryAndReturnJson(string commandText, CommandType commandType, IDbTransaction transaction);
+
+        /// <summary>
         /// Queries the data source and returns a single scalar value of type T.
         /// </summary>
         /// <typeparam name="T">The type of the scalar value to return.</typeparam>
@@ -62,6 +72,18 @@ namespace Gasolutions.Core.Repository.Interfaces
         T ExecuteScalar<T>(string commandText, CommandType commandType, SqlConnection connection, IDbTransaction transaction);
 
         /// <summary>
+        /// Ejecuta un comando SQL y devuelve el valor de la primera columna de la primera fila del conjunto de
+        /// resultados, convertido al tipo especificado, usando la transacción proporcionada.
+        /// </summary>
+        /// <typeparam name="T">El tipo al que se convertirá el valor devuelto.</typeparam>
+        /// <param name="commandText">El texto del comando SQL que se va a ejecutar. No puede ser nulo ni estar vacío.</param>
+        /// <param name="commandType">El tipo de comando que se va a ejecutar, como texto o procedimiento almacenado.</param>
+        /// <param name="transaction">La transacción de base de datos en la que se ejecutará el comando.</param>
+        /// <returns>El valor de la primera columna de la primera fila del conjunto de resultados, convertido al tipo
+        /// especificado. Si el resultado es DBNull, se devuelve el valor predeterminado de T.</returns>
+        T ExecuteScalar<T>(string commandText, CommandType commandType, IDbTransaction transaction);
+
+        /// <summary>
         /// Gets the maximum value of the specified field for the specified table.
         /// </summary>
         /// <param name="tableName">The name of the table.</param>
@@ -84,5 +106,18 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>El valor máximo encontrado en el campo especificado. Devuelve null si no existen registros que cumplan la
         /// condición.</returns>
         object? Max(string tableName, string fieldName, object whereOrPrimaryKey, SqlConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        /// Obtiene el valor máximo de un campo específico en una tabla de base de datos, aplicando un filtro opcional o
+        /// clave primaria y usando la transacción proporcionada.
+        /// </summary>
+        /// <param name="tableName">El nombre de la tabla en la que se realizará la consulta.</param>
+        /// <param name="fieldName">El nombre del campo cuyo valor máximo se desea obtener.</param>
+        /// <param name="whereOrPrimaryKey">Una condición de filtro para la consulta, que puede ser una expresión de filtro o el valor de la clave
+        /// primaria. Si es null, se calcula el máximo sobre todos los registros.</param>
+        /// <param name="transaction">La transacción de base de datos en la que se ejecutará la consulta.</param>
+        /// <returns>El valor máximo encontrado en el campo especificado. Devuelve null si no existen registros que cumplan la
+        /// condición.</returns>
+        object? Max(string tableName, string fieldName, object whereOrPrimaryKey, IDbTransaction transaction);
     }
 }
