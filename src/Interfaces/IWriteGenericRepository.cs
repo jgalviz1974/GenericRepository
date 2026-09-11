@@ -1,4 +1,4 @@
-﻿// <copyright file="IWriteGenericRepository.cs" company="Gasolutions SAS">
+// <copyright file="IWriteGenericRepository.cs" company="Gasolutions SAS">
 // Copyright (c) Gasolutions SAS. Todos los derechos reservados.
 // </copyright>
 
@@ -100,7 +100,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the merged entity.
         /// </returns>
-        TKey Merge(T entity, IEnumerable<RepositoryField> qualifiers);
+        TKey Merge(T entity, IEnumerable<string> qualifiers);
 
         /// <summary>
         ///     Merges the state of the given entity into the current session with qualifiers using the provided
@@ -113,7 +113,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the merged entity.
         /// </returns>
-        TKey Merge(T entity, IEnumerable<RepositoryField> qualifiers, IDbConnection connection, IDbTransaction transaction);
+        TKey Merge(T entity, IEnumerable<string> qualifiers, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         ///     Merges the state of the given entity into the current session with qualifiers using the provided
@@ -125,7 +125,7 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>
         ///     The primary key of the merged entity.
         /// </returns>
-        TKey Merge(T entity, IEnumerable<RepositoryField> qualifiers, IDbTransaction transaction);
+        TKey Merge(T entity, IEnumerable<string> qualifiers, IDbTransaction transaction);
 
         /// <summary>
         ///     Merges the state of the given entity into the current session using the provided connection and
@@ -421,3 +421,4 @@ namespace Gasolutions.Core.Repository.Interfaces
         IEnumerable<T> ExecuteQuery(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction, IEnumerable<DbParameter>? parameters = null);
     }
 }
+

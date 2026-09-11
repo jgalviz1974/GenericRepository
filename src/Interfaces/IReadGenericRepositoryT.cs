@@ -1,4 +1,4 @@
-﻿// <copyright file="IReadGenericRepositoryT.cs" company="Gasolutions SAS">
+// <copyright file="IReadGenericRepositoryT.cs" company="Gasolutions SAS">
 // Copyright (c) Gasolutions SAS. Todos los derechos reservados.
 // </copyright>
 
@@ -210,3 +210,4 @@ namespace Gasolutions.Core.Repository.Interfaces
         TKey? Max(object whereOrPrimaryKey, IDbConnection connection, IDbTransaction transaction);
     }
 }
+

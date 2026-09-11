@@ -1,4 +1,9 @@
 # Changelog - Gasolutions.Core.GenericRepository
+### Changed
+- Started migrating the repository contracts to be database-provider agnostic.
+- Replaced RepoDb- and SQL Server-specific types with neutral abstractions in the contracts project.
+- Removed direct dependency on RepoDb and Microsoft.Data.SqlClient from the contracts project.
+
 ## [1.0.10.11]
 ### Changed
 - Refactored repository contracts to be database-provider agnostic.
