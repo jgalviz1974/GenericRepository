@@ -27,6 +27,15 @@ namespace Gasolutions.Core.Repository.Interfaces
         string QueryAndReturnJson(string commandText, CommandType commandType);
 
         /// <summary>
+        /// Queries the data source with typed parameters and returns the first JSON string result.
+        /// </summary>
+        /// <param name="commandText">The SQL command text or stored procedure name.</param>
+        /// <param name="commandType">The command type.</param>
+        /// <param name="parameters">Parameters added to the underlying database command.</param>
+        /// <returns>The first JSON result, or an empty string when no rows are returned.</returns>
+        string QueryAndReturnJson(string commandText, CommandType commandType, IEnumerable<DbParameter> parameters);
+
+        /// <summary>
         /// Queries the data source and returns the result as JSON, using the specified transaction.
         /// </summary>
         /// <param name="commandText">The command text to execute against the data source.</param>
@@ -36,6 +45,17 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>A JSON string containing the query results.</returns>
         /// <exception cref="Exception">Thrown when there is an error executing the query.</exception>
         string QueryAndReturnJson(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        /// Queries the data source with typed parameters using the supplied connection and transaction.
+        /// </summary>
+        /// <param name="commandText">The SQL command text or stored procedure name.</param>
+        /// <param name="commandType">The command type.</param>
+        /// <param name="parameters">Parameters added to the underlying database command.</param>
+        /// <param name="connection">The open connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>The first JSON result, or an empty string when no rows are returned.</returns>
+        string QueryAndReturnJson(string commandText, CommandType commandType, IEnumerable<DbParameter> parameters, IDbConnection connection, IDbTransaction transaction);
 
         /// <summary>
         /// Queries the data source and returns the result as JSON, using the specified transaction.
@@ -58,6 +78,16 @@ namespace Gasolutions.Core.Repository.Interfaces
         T ExecuteScalar<T>(string commandText, CommandType commandType);
 
         /// <summary>
+        /// Executes a scalar command with typed parameters.
+        /// </summary>
+        /// <typeparam name="T">The scalar result type.</typeparam>
+        /// <param name="commandText">The SQL command text or stored procedure name.</param>
+        /// <param name="commandType">The command type.</param>
+        /// <param name="parameters">Parameters added to the underlying database command.</param>
+        /// <returns>The first-column value of the first row converted to <typeparamref name="T"/>.</returns>
+        T ExecuteScalar<T>(string commandText, CommandType commandType, IEnumerable<DbParameter> parameters);
+
+        /// <summary>
         /// Ejecuta un comando SQL y devuelve el valor de la primera columna de la primera fila del conjunto de
         /// resultados, convertido al tipo especificado.
         /// </summary>
@@ -70,6 +100,42 @@ namespace Gasolutions.Core.Repository.Interfaces
         /// <returns>El valor de la primera columna de la primera fila del conjunto de resultados, convertido al tipo
         /// especificado. Si el resultado es DBNull, se devuelve el valor predeterminado de T.</returns>
         T ExecuteScalar<T>(string commandText, CommandType commandType, IDbConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        /// Executes a scalar command with typed parameters using the supplied connection and transaction.
+        /// </summary>
+        /// <typeparam name="T">The scalar result type.</typeparam>
+        /// <param name="commandText">The SQL command text or stored procedure name.</param>
+        /// <param name="commandType">The command type.</param>
+        /// <param name="parameters">Parameters added to the underlying database command.</param>
+        /// <param name="connection">The open connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <returns>The first-column value of the first row converted to <typeparamref name="T"/>.</returns>
+        T ExecuteScalar<T>(string commandText, CommandType commandType, IEnumerable<DbParameter> parameters, IDbConnection connection, IDbTransaction transaction);
+
+        /// <summary>
+        /// Executes a reader command with typed parameters and maps all result sets while the repository owns the connection.
+        /// </summary>
+        /// <typeparam name="TResult">The mapped result type.</typeparam>
+        /// <param name="commandText">The SQL command text or stored procedure name.</param>
+        /// <param name="commandType">The command type.</param>
+        /// <param name="parameters">Parameters added to the underlying database command.</param>
+        /// <param name="map">Function that consumes the open reader and returns the result.</param>
+        /// <returns>The mapped result.</returns>
+        TResult ExecuteReader<TResult>(string commandText, CommandType commandType, IEnumerable<DbParameter> parameters, Func<IDataReader, TResult> map);
+
+        /// <summary>
+        /// Executes a reader command with typed parameters in the supplied connection and transaction, mapping all result sets.
+        /// </summary>
+        /// <typeparam name="TResult">The mapped result type.</typeparam>
+        /// <param name="commandText">The SQL command text or stored procedure name.</param>
+        /// <param name="commandType">The command type.</param>
+        /// <param name="parameters">Parameters added to the underlying database command.</param>
+        /// <param name="connection">The open connection to use.</param>
+        /// <param name="transaction">The transaction to use.</param>
+        /// <param name="map">Function that consumes the open reader and returns the result.</param>
+        /// <returns>The mapped result.</returns>
+        TResult ExecuteReader<TResult>(string commandText, CommandType commandType, IEnumerable<DbParameter> parameters, IDbConnection connection, IDbTransaction transaction, Func<IDataReader, TResult> map);
 
         /// <summary>
         /// Ejecuta un comando SQL y devuelve el valor de la primera columna de la primera fila del conjunto de

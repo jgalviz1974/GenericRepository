@@ -1,4 +1,9 @@
 # Changelog - Gasolutions.Core.GenericRepository
+## [1.0.10.13]
+### CHanged
+- Add `IEnumerable<DbParameter>`, `IDbConnection` e `IDbTransaction` To `QueryAndReturnJson`, `ExecuteScalar<T>` y `ExecuteReader<TResult>` at `IReadGenericRepository`.
+
+## [1.0.10.12]
 ### Changed
 - Started migrating the repository contracts to be database-provider agnostic.
 - Replaced RepoDb- and SQL Server-specific types with neutral abstractions in the contracts project.
